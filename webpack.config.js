@@ -1,18 +1,25 @@
 // El módulo path proporciona utilidades para trabajar con rutas de archivos y directorios
 // Evitamos conflictos con node, ya que windows y linux tienen diferentes estilos de rutas
 const path = require("path");
+// Importamos babel para usarlo dentro de la sección de plugins
+const BabelPlugin = require("babel-webpack-plugin");
 
 // Exportamos como un módulo de commonjs
 module.exports = {
     // Modo desarrollo, ya que webpack por defecto esta en modo producción
     mode: 'development',
     // Nuestro punto de entrada
-    entry: path.join(__dirname, 'index.js'),
+    //entry: path.join(__dirname, 'index.js'),
+    entry: {
+        "index": path.join(__dirname, 'index.js'),
+        "contacto": path.join(__dirname, 'contacto.js')
+    },
     // Nuestra salida
     output: {
         // Obtenemos la ruta absoluta
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        //filename: 'bundle.js'
+        filename: '[name].js'
     },
     module: {
         // Array con la lista de loaders
@@ -34,5 +41,14 @@ module.exports = {
             ]
           }
        ]
-    }
+    },
+    plugins: [
+        // Array con la lista de plugins
+        new BabelPlugin({
+            test: /\.js$/,
+            presets: ['es2015'],
+            sourceMaps: false,
+            compact: false
+        })
+    ]
 }
