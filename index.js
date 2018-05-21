@@ -69,3 +69,4 @@ let Maria = new Humano("Hembra", 20);
 let David = new Humano("Varon", 30);
 console.log(Maria.getEdad(), Maria.getSexo());
 console.log(David.getEdad(), David.getSexo());
+alert("FIN INDEX.js, webpack dev server 1");

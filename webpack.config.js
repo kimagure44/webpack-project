@@ -50,5 +50,6 @@ module.exports = {
             sourceMaps: false,
             compact: false
         })
-    ]
+    ],
+    //watch: true
 }
